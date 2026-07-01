@@ -1,30 +1,33 @@
 import { Link } from 'react-router-dom';
-import { Button, TrajectoryMap } from '../components/common';
+import { Button, TrajectoryMap, LanguageSelector } from '../components/common';
 import { Rocket, Globe, Shield, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ALL_DESTINATIONS } from '../data/destinations';
+import { useLanguage } from '../hooks/useLanguage';
 
 export const Home = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: <Rocket size={32} />,
-      title: 'Interplanetary Travel',
-      description: 'Explore destinations across the solar system with our state-of-the-art spacecraft.',
+      title: t.feature1Title,
+      description: t.feature1Desc,
     },
     {
       icon: <Globe size={32} />,
-      title: 'Multiple Destinations',
-      description: 'From Mars to Europa, discover new worlds and book your journey today.',
+      title: t.feature2Title,
+      description: t.feature2Desc,
     },
     {
       icon: <Shield size={32} />,
-      title: 'Safe & Secure',
-      description: 'Your safety is our priority with advanced navigation and life support systems.',
+      title: t.feature3Title,
+      description: t.feature3Desc,
     },
     {
       icon: <Zap size={32} />,
-      title: 'Instant Booking',
-      description: 'Book your flight in seconds and receive instant confirmation.',
+      title: t.feature4Title,
+      description: t.feature4Desc,
     },
   ];
 
@@ -35,8 +38,13 @@ export const Home = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center py-20"
+        className="text-center py-20 relative"
       >
+        {/* Language selector — top-right of hero */}
+        <div className="absolute top-4 right-0">
+          <LanguageSelector />
+        </div>
+
         <motion.div
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
@@ -44,10 +52,10 @@ export const Home = () => {
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
             <span className="bg-cosmic-gradient bg-clip-text text-transparent">
-              Journey Beyond
+              {t.heroTitle1}
             </span>
             <br />
-            <span className="text-star-white">The Stars</span>
+            <span className="text-star-white">{t.heroTitle2}</span>
           </h1>
         </motion.div>
 
@@ -57,8 +65,7 @@ export const Home = () => {
           transition={{ delay: 0.4 }}
           className="text-xl text-star-white/80 mb-8 max-w-2xl mx-auto"
         >
-          Experience the future of space travel with Galaxium. Book your
-          interplanetary flight and explore the wonders of our solar system.
+          {t.heroSubtitle}
         </motion.p>
 
         <motion.div
@@ -69,11 +76,11 @@ export const Home = () => {
         >
           <Link to="/flights">
             <Button size="lg" className="w-full sm:w-auto">
-              Explore Flights
+              {t.exploreFlights}
             </Button>
           </Link>
           <Button variant="secondary" size="lg" className="w-full sm:w-auto">
-            Learn More
+            {t.learnMore}
           </Button>
         </motion.div>
       </motion.section>
@@ -86,7 +93,7 @@ export const Home = () => {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12 text-star-white"
         >
-          Why Choose Galaxium?
+          {t.whyChoose}
         </motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -119,7 +126,7 @@ export const Home = () => {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12 text-star-white"
         >
-          Explore Our Destinations
+          {t.exploreDestinations}
         </motion.h2>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -134,7 +141,7 @@ export const Home = () => {
               <Link to={`/destinations/${dest.slug}`} className="block h-full">
                 <div className={`glass-card p-5 h-full hover:bg-white/10 transition-all duration-300 border ${dest.borderAccent}`}>
                   <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-3 ${dest.bgAccent} ${dest.accentColor} border ${dest.borderAccent}`}>
-                    Destination
+                    {t.destinationLabel}
                   </span>
                   <h3 className="text-lg font-bold text-star-white mb-1">{dest.name}</h3>
                   <p className="text-star-white/60 text-sm leading-snug mb-3">{dest.tagline}</p>
@@ -163,15 +170,14 @@ export const Home = () => {
         className="glass-card p-12 text-center bg-cosmic-gradient"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-          Ready for Your Space Adventure?
+          {t.ctaTitle}
         </h2>
         <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-          Join thousands of space travelers who have already booked their
-          journey to the stars. Your adventure awaits!
+          {t.ctaSubtitle}
         </p>
         <Link to="/flights">
           <Button variant="secondary" size="lg">
-            Book Your Flight Now
+            {t.ctaButton}
           </Button>
         </Link>
       </motion.section>

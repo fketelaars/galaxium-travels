@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { UserProvider } from './hooks/useUser';
+import { LanguageProvider } from './hooks/useLanguage';
 import { Layout } from './components/layout/Layout';
 import { Home } from './pages/Home';
 import { Flights } from './pages/Flights';
@@ -9,6 +10,7 @@ import { DestinationDetail } from './pages/DestinationDetail';
 function App() {
   return (
     <BrowserRouter>
+      <LanguageProvider>
       <UserProvider>
         <Layout>
           <Routes>
@@ -20,6 +22,7 @@ function App() {
           </Routes>
         </Layout>
       </UserProvider>
+      </LanguageProvider>
     </BrowserRouter>
   );
 }

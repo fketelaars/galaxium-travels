@@ -5,5 +5,6 @@ export { Modal } from './Modal';
 export { LoadingSpinner } from './LoadingSpinner';
 export { Starfield } from './Starfield';
 export { TrajectoryMap } from './TrajectoryMap';
+export { LanguageSelector } from './LanguageSelector';
 
 // Made with Bob
